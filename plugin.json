@@ -1,7 +1,35 @@
-{
-  "name": "ExamplePlugin",
-  "author": "Anuke",
-  "main": "example.ExamplePlugin",
-  "description": "A plugin to demonstrate some basic features.",
-  "version": 1.0
+import mindustry.mod.Plugin;
+import mindustry.gen.Player;
+import arc.Events;
+import mindustry.game.EventType.*;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class TeamPersistencePlugin extends Plugin {
+    private Map<String, Integer> playerTeams = new HashMap<>();
+
+    @Override
+    public void init() {
+        Events.on(PlayerJoin.class, event -> {
+            Player player = event.player;
+            if (playerTeams.containsKey(player.uuid())) {
+                player.team(playerTeams.get(player.uuid()));
+            }
+        });
+
+        Events.on(PlayerLeave.class, event -> {
+            Player player = event.player;
+            playerTeams.put(player.uuid(), player.team().id);
+        });
+
+        Events.on(ServerLoadEvent.class, event -> {
+            // 在服務器重啓時恢復所有玩家的隊伍
+            for (Player player : playerGroups.all()) {
+                if (playerTeams.containsKey(player.uuid())) {
+                    player.team(playerTeams.get(player.uuid()));
+                }
+            }
+        });
+    }
 }
