@@ -8,7 +8,7 @@ import mindustry.game.Team;
 import java.util.HashMap;
 import java.util.Map;
 
-public class KeepTeamPlugin extends plugin {
+public class KeepTeamPlugin extends mindustry.mod.Plugin {
 
     // 用于存储玩家自定义数据的Map
     private Map<String, Map<String, Object>> playerData = new HashMap<>();
