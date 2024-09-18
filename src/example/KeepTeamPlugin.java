@@ -1,3 +1,4 @@
+import mindustry.mod.Plugin
 import mindustry.gen.Player;
 import mindustry.game.EventType.PlayerJoin;
 import mindustry.game.EventType.PlayerLeave;
@@ -7,7 +8,7 @@ import mindustry.game.Team;
 import java.util.HashMap;
 import java.util.Map;
 
-public class KeepTeamPlugin extends class plugin {
+public class KeepTeamPlugin extends plugin {
 
     // 用于存储玩家自定义数据的Map
     private Map<String, Map<String, Object>> playerData = new HashMap<>();
