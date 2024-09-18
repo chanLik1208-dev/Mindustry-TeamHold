@@ -17,8 +17,9 @@ public class KeepTeamPlugin extends Plugin {
         Events.on(PlayerJoin.class, event -> {
             String uuid = event.player.uuid();
             Log.info("Player @ joined", uuid);
-            if (getPlayerData(uuid).containsKey("team")) {
-                int teamId = (int) getPlayerData(uuid).get("team");
+            ObjectMap<String, Object> data = getPlayerData(uuid);
+            if (data.containsKey("team")) {
+                int teamId = (int) data.get("team");
                 Player player = Groups.player.find(p -> p.uuid().equals(uuid));
                 if (player != null) {
                     player.team(Team.get(teamId));
@@ -29,7 +30,8 @@ public class KeepTeamPlugin extends Plugin {
 
         Events.on(PlayerLeave.class, event -> {
             String uuid = event.player.uuid();
-            getPlayerData(uuid).put("team", event.player.team().id);
+            ObjectMap<String, Object> data = getPlayerData(uuid);
+            data.put("team", event.player.team().id);
             Log.info("Player @ left and their team @ was saved", uuid, event.player.team().id);
         });
     }
