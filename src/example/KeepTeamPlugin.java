@@ -11,7 +11,7 @@ public class KeepTeamPlugin extends Plugin {
     @Override
     public void init() {
         // 监听玩家加入事件
-        events.on(PlayerJoin.class, event -> {
+        Events.on(PlayerJoin.class, event -> {
             // 检查玩家是否有之前的队伍记录
             if (event.player.customData().has("team")) {
                 // 将玩家分配到之前的队伍
@@ -20,7 +20,7 @@ public class KeepTeamPlugin extends Plugin {
         });
 
         // 监听玩家离开事件
-        events.on(PlayerLeave.class, event -> {
+        Events.on(PlayerLeave.class, event -> {
             // 保存玩家的队伍信息
             event.player.customData().put("team", event.player.team().id);
         });
