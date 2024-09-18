@@ -12,7 +12,7 @@ public class KeepTeamHandler extends Plugin {
     // 用于存储玩家自定义数据的ObjectMap
     private ObjectMap<String, ObjectMap<String, Object>> playerData = new ObjectMap<>();
 
-    public KeepTeamHandler extends Plugin() {
+    public KeepTeamHandler () {
         // 监听玩家加入事件
         Events.on(PlayerJoin.class, event -> {
             // 获取玩家UUID
