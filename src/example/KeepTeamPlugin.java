@@ -6,7 +6,7 @@ import mindustry.game.EventType.PlayerJoin;
 import mindustry.game.EventType.PlayerLeave;
 import mindustry.game.Team;
 import mindustry.Vars;
-s
+
 public class KeepTeamHandler {
 
     // 用于存储玩家自定义数据的ObjectMap
