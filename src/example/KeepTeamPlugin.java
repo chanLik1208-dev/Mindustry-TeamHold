@@ -1,19 +1,17 @@
 import mindustry.mod.Plugin;
-import mindustry.gen.Player;
 import mindustry.game.EventType.PlayerJoin;
 import mindustry.game.EventType.PlayerLeave;
 import arc.Events;
 import mindustry.Vars;
 import mindustry.game.Team;
-import java.util.HashMap;
-import java.util.Map;
+import arc.struct.ObjectMap;
 
-public class KeepTeamPlugin extends mindustry.mod.Plugin {
+public class KeepTeamHandler {
 
-    // 用于存储玩家自定义数据的Map
-    private Map<String, Map<String, Object>> playerData = new HashMap<>();
+    // 用于存储玩家自定义数据的ObjectMap
+    private ObjectMap<String, ObjectMap<String, Object>> playerData = new ObjectMap<>();
 
-    public void init() {
+    public KeepTeamHandler() {
         // 监听玩家加入事件
         Events.on(PlayerJoin.class, event -> {
             Player player = event.player;
@@ -33,7 +31,7 @@ public class KeepTeamPlugin extends mindustry.mod.Plugin {
     }
 
     // 获取玩家自定义数据的方法
-    private Map<String, Object> getPlayerData(Player player) {
-        return playerData.computeIfAbsent(player.uuid(), k -> new HashMap<>());
+    private ObjectMap<String, Object> getPlayerData(Player player) {
+        return playerData.get(player.uuid(), ObjectMap::new);
     }
 }
