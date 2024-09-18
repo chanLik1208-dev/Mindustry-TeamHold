@@ -1,6 +1,10 @@
-import mindustry.mod.Plugin;
+import mindustry.game.EventType.PlayerJoin;
+import mindustry.game.EventType.PlayerLeave;
 import mindustry.gen.Player;
+import mindustry.mod.Plugin;
 import mindustry.net.Administration;
+import mindustry.Vars;
+
 
 public class KeepTeamPlugin extends Plugin {
 
