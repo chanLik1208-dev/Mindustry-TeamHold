@@ -1,4 +1,3 @@
-import mindustry.mod.Plugin;
 import mindustry.gen.Player;
 import mindustry.game.EventType.PlayerJoin;
 import mindustry.game.EventType.PlayerLeave;
