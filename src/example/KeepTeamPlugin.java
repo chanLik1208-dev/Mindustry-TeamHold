@@ -1,18 +1,19 @@
-import mindustry.mod.Plugin;
 import arc.Events;
 import arc.struct.ObjectMap;
 import arc.util.Log;
+import mindustry.mod.Plugin;
 import mindustry.game.EventType.PlayerJoin;
 import mindustry.game.EventType.PlayerLeave;
 import mindustry.game.Team;
 import mindustry.Vars;
 
-public class KeepTeamHandler {
+public class KeepTeamPlugin extends Plugin {
 
     // 用于存储玩家自定义数据的ObjectMap
     private ObjectMap<String, ObjectMap<String, Object>> playerData = new ObjectMap<>();
 
-    public KeepTeamHandler () {
+    @Override
+    public void init() {
         // 监听玩家加入事件
         Events.on(PlayerJoin.class, event -> {
             // 获取玩家UUID
