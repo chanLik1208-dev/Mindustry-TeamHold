@@ -1,6 +1,11 @@
 import mindustry.mod.Plugin;
 import mindustry.gen.Player;
 import mindustry.net.Administration;
+import mindustry.game.Team;
+import mindustry.game.EventType.PlayerJoin;
+import mindustry.game.EventType.PlayerLeave;
+import mindustry.game.EventType.PlayerChangeTeamEvent;
+import arc.Events;
 
 import java.util.HashMap;
 import java.util.Map;
