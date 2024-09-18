@@ -30,7 +30,8 @@ allprojects{
 dependencies{
     compileOnly "com.github.Anuken.Arc:arc-core:latest.release"
     compileOnly "com.github.Anuken.Mindustry:core:latest.release"
-    dependencies {
+    implementation 'com.github.Anuken:Arc:master-SNAPSHOT'
+    implementation 'com.github.Anuken:Mindustry:master-SNAPSHOT'
     annotationProcessor "com.github.Anuken:jabel:latest.release"
 }
 
