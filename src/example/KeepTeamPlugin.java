@@ -7,12 +7,12 @@ import mindustry.game.Team;
 import java.util.HashMap;
 import java.util.Map;
 
-public class KeepTeamHandler {
+public class KeepTeamPlugin extends Plugin {
 
     // 用于存储玩家自定义数据的Map
     private Map<String, Map<String, Object>> playerData = new HashMap<>();
 
-    public KeepTeamHandler() {
+    public void init() {
         // 监听玩家加入事件
         Events.on(PlayerJoin.class, event -> {
             Player player = event.player;
