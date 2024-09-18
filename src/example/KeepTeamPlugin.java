@@ -10,38 +10,30 @@ import mindustry.gen.Player;
 
 public class KeepTeamPlugin extends Plugin {
 
-    // 用于存储玩家自定义数据的ObjectMap
     private ObjectMap<String, ObjectMap<String, Object>> playerData = new ObjectMap<>();
 
     @Override
     public void init() {
-        // 监听玩家加入事件
         Events.on(PlayerJoin.class, event -> {
-            // 获取玩家UUID
             String uuid = event.player.uuid();
-            // 检查玩家是否有之前的队伍记录
+            Log.info("Player @ joined", uuid);
             if (getPlayerData(uuid).containsKey("team")) {
-                // 将玩家分配到之前的队伍
                 int teamId = (int) getPlayerData(uuid).get("team");
                 Player player = Groups.player.find(p -> p.uuid().equals(uuid));
                 if (player != null) {
                     player.team(Team.get(teamId));
-                    Log.info("Player @ joined and was assigned to team @", uuid, teamId);
+                    Log.info("Player @ assigned to team @", uuid, teamId);
                 }
             }
         });
 
-        // 监听玩家离开事件
         Events.on(PlayerLeave.class, event -> {
-            // 获取玩家UUID
             String uuid = event.player.uuid();
-            // 保存玩家的队伍信息
             getPlayerData(uuid).put("team", event.player.team().id);
-            Log.info("Player @ left and their team was saved", uuid);
+            Log.info("Player @ left and their team @ was saved", uuid, event.player.team().id);
         });
     }
 
-    // 获取玩家自定义数据的方法
     private ObjectMap<String, Object> getPlayerData(String uuid) {
         return playerData.get(uuid, ObjectMap::new);
     }
