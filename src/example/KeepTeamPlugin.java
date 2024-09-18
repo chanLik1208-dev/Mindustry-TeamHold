@@ -11,11 +11,11 @@ public class KeepTeamPlugin extends Plugin {
     @Override
     public void init() {
         // 监听玩家加入事件
-        Events.on(PlayerJoin.class, event -> {
+        events.on(PlayerJoin.class, event -> {
             // 检查玩家是否有之前的队伍记录
             if (event.player.customData().has("team")) {
                 // 将玩家分配到之前的队伍
-                event.player.team(Team.get(event.player.customData().getInt("team")));
+                event.player.team(team.get(event.player.customData().getInt("team")));
             }
         });
 
