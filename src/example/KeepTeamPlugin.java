@@ -20,7 +20,7 @@ public class KeepTeamPlugin extends Plugin {
         });
 
         // 监听玩家离开事件
-        Events.on(PlayerLeave.class, event -> {
+        events.on(PlayerLeave.class, event -> {
             // 保存玩家的队伍信息
             event.player.customData().put("team", event.player.team().id);
         });
