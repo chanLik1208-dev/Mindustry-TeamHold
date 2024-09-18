@@ -1,3 +1,4 @@
+使用脚本中的player.customData生效
 import mindustry.mod.Plugin;
 import mindustry.gen.Player;
 import mindustry.game.EventType.PlayerJoin;
