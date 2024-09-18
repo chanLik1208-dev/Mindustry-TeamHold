@@ -5,7 +5,8 @@ import mindustry.mod.Plugin;
 import mindustry.game.EventType.PlayerJoin;
 import mindustry.game.EventType.PlayerLeave;
 import mindustry.game.Team;
-import mindustry.Vars;
+import mindustry.gen.Groups;
+import mindustry.gen.Player;
 
 public class KeepTeamPlugin extends Plugin {
 
@@ -22,8 +23,11 @@ public class KeepTeamPlugin extends Plugin {
             if (getPlayerData(uuid).containsKey("team")) {
                 // 将玩家分配到之前的队伍
                 int teamId = (int) getPlayerData(uuid).get("team");
-                Vars.playerGroup.find(p -> p.uuid().equals(uuid)).team(Team.get(teamId));
-                Log.info("Player @ joined and was assigned to team @", uuid, teamId);
+                Player player = Groups.player.find(p -> p.uuid().equals(uuid));
+                if (player != null) {
+                    player.team(Team.get(teamId));
+                    Log.info("Player @ joined and was assigned to team @", uuid, teamId);
+                }
             }
         });
 
