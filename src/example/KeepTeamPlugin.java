@@ -15,14 +15,14 @@ public class KeepTeamPlugin extends Plugin {
             // 检查玩家是否有之前的队伍记录
             if (event.player.customData().has("team")) {
                 // 将玩家分配到之前的队伍
-                event.player.team(Team.get(player.customData().getInt("team")));
+                event.player.team(Team.get(event.player.customData().getInt("team")));
             }
         });
 
         // 监听玩家离开事件
         Events.on(PlayerLeave.class, event -> {
             // 保存玩家的队伍信息
-            event.player.customData().put("team", player.team().id);
+            event.player.customData().put("team", event.player.team().id);
         });
     }
 }
