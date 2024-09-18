@@ -1,4 +1,3 @@
-//使用脚本中的player.customData生效
 import mindustry.mod.Plugin;
 import mindustry.gen.Player;
 import mindustry.game.EventType.PlayerJoin;
@@ -6,8 +5,13 @@ import mindustry.game.EventType.PlayerLeave;
 import arc.Events;
 import mindustry.Vars;
 import mindustry.game.Team;
+import java.util.HashMap;
+import java.util.Map;
 
 public class KeepTeamPlugin extends Plugin {
+
+    // 用于存储玩家自定义数据的Map
+    private Map<String, Map<String, Object>> playerData = new HashMap<>();
 
     @Override
     public void init() {
@@ -15,9 +19,9 @@ public class KeepTeamPlugin extends Plugin {
         Events.on(PlayerJoin.class, event -> {
             Player player = event.player;
             // 检查玩家是否有之前的队伍记录
-            if (player.customData().has("team")) {
+            if (getPlayerData(player).containsKey("team")) {
                 // 将玩家分配到之前的队伍
-                player.team(Team.get(player.customData().getInt("team")));
+                player.team(Team.get((int) getPlayerData(player).get("team")));
             }
         });
 
@@ -25,7 +29,12 @@ public class KeepTeamPlugin extends Plugin {
         Events.on(PlayerLeave.class, event -> {
             Player player = event.player;
             // 保存玩家的队伍信息
-            player.customData().put("team", player.team().id);
+            getPlayerData(player).put("team", player.team().id);
         });
+    }
+
+    // 获取玩家自定义数据的方法
+    private Map<String, Object> getPlayerData(Player player) {
+        return playerData.computeIfAbsent(player.uuid(), k -> new HashMap<>());
     }
 }
