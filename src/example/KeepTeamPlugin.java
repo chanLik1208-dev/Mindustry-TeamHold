@@ -17,12 +17,12 @@ public class KeepTeamPlugin extends Plugin {
                 // 将玩家分配到之前的队伍
                 event.player.team(team.get(event.player.customData().getInt("team")));
             }
-        });
+        };
 
         // 监听玩家离开事件
         Event(PlayerLeave(mindustry.gen.Player))-> {
             // 保存玩家的队伍信息
             event.player.customData().put("team", event.player.team().id);
-        });
+        };
     }
 }
