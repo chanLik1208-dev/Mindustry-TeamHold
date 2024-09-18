@@ -1,28 +1,30 @@
+import mindustry.mod.Plugin;
+import mindustry.gen.Player;
 import mindustry.game.EventType.PlayerJoin;
 import mindustry.game.EventType.PlayerLeave;
-import mindustry.gen.Player;
-import mindustry.mod.Plugin;
-import mindustry.net.Administration;
+import arc.Events;
 import mindustry.Vars;
-
+import mindustry.game.Team;
 
 public class KeepTeamPlugin extends Plugin {
 
     @Override
     public void init() {
         // 监听玩家加入事件
-        if(PlayerJoin(mindustry.gen.Player)) {
-            // 检查玩家是否有之前的队伍记录s
-            if (event.player.customData().has("team")) {
+        Events.on(PlayerJoin.class, event -> {
+            Player player = event.player;
+            // 检查玩家是否有之前的队伍记录
+            if (player.customData().has("team")) {
                 // 将玩家分配到之前的队伍
-                event.player.team(team.get(event.player.customData().getInt("team")));
+                player.team(Team.get(player.customData().getInt("team")));
             }
-        };
+        });
 
         // 监听玩家离开事件
-        if(PlayerLeave(mindustry.gen.Player)) {
+        Events.on(PlayerLeave.class, event -> {
+            Player player = event.player;
             // 保存玩家的队伍信息
-            event.player.customData().put("team", event.player.team().id);
-        };
+            player.customData().put("team", player.team().id);
+        });
     }
 }
