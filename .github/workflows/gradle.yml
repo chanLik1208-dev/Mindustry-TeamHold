@@ -16,6 +16,11 @@ jobs:
       run: ./gradlew jar
     - name: Upload built jar file
       uses: actions/upload-artifact@v3
+                  
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v4.1.8
+
+
       with:
         name: ${{ github.event.repository.name }}
         path: build/libs/${{ github.event.repository.name }}.jar
