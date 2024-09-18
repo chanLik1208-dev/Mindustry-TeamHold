@@ -18,7 +18,6 @@ repositories{
 ext{
     //the build number that this plugin is made for
     mindustryVersion = 'v146'
-    jabelVersion = "93fde537c7"
 }
 
 //java 8 backwards compatibility flag
@@ -29,9 +28,12 @@ allprojects{
 }
 
 dependencies{
-    compileOnly "com.github.Anuken.Arc:arc-core:$mindustryVersion"
-    compileOnly "com.github.Anuken.Mindustry:core:$mindustryVersion"
-    annotationProcessor "com.github.Anuken:jabel:$jabelVersion"
+    compileOnly "com.github.Anuken.Arc:arc-core:latest.release"
+    compileOnly "com.github.Anuken.Mindustry:core:latest.release"
+    dependencies {
+    annotationProcessor "com.github.Anuken:jabel:latest.release"
+}
+
 }
 
 jar{
