@@ -35,7 +35,6 @@ dependencies{
     annotationProcessor "com.github.Anuken:jabel:latest.release"
 }
 
-}
 
 jar{
     archiveFileName = "${project.archivesBaseName}.jar"
