@@ -10,17 +10,16 @@ sourceSets.main.java.srcDirs = ["src"]
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
-repositories{
+repositories {
     mavenCentral()
-    maven{ url "https://raw.githubusercontent.com/Zelaux/MindustryRepo/master/repository" }
-    maven{ url 'https://www.jitpack.io' }
+    maven { url 'https://jitpack.io' }
 }
 
-ext{
-    //the build number that this plugin is made for
-    mindustryVersion = 'v146'
-    jabelVersion = "93fde537c7"
+dependencies {
+    compileOnly "com.github.Anuken.Arc:arc-core:latest.release"
+    compileOnly "com.github.Anuken.Mindustry:core:latest.release"
 }
+
 
 //java 8 backwards compatibility flag
 allprojects{
@@ -29,11 +28,7 @@ allprojects{
     }
 }
 
-dependencies{
-    compileOnly "com.github.Anuken.Arc:arc-core:master"
-    compileOnly "com.github.Anuken.Mindustry:core:master"
-    annotationProcessor "com.github.Anuken:jabel:master"
-}
+
 
 jar{
     archiveFileName = "${project.archivesBaseName}.jar"
