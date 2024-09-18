@@ -32,7 +32,7 @@ public class KeepTeamPlugin extends Plugin {
             Player player = event.player;
             String uuid = player.uuid();
             // 保存玩家隊伍信息
-            playerTeams.put(uuid, player.team().id);
+            playerTeams.put(uuid, (byte) player.team().id);
             Log.info("保存玩家 @ 的隊伍為 @", player.name, player.team().id);
         });
     }
