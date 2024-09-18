@@ -5,7 +5,6 @@ import mindustry.mod.Plugin;
 import mindustry.game.EventType.PlayerJoin;
 import mindustry.game.EventType.PlayerLeave;
 import mindustry.game.Team;
-import mindustry.gen.Call;
 import mindustry.gen.Groups;
 import mindustry.gen.Player;
 
@@ -23,7 +22,6 @@ public class KeepTeamPlugin extends Plugin {
                 Player player = Groups.player.find(p -> p.uuid().equals(uuid));
                 if (player != null) {
                     player.team(Team.get(teamId));
-                    Call.setPlayerTeam(player.con, Team.get(teamId));
                     Log.info("Player @ assigned to team @", uuid, teamId);
                 }
             }
