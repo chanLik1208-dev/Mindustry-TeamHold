@@ -4,13 +4,14 @@ import arc.util.Log;
 import arc.Events;
 import mindustry.game.EventType.PlayerJoin;
 import mindustry.game.EventType.PlayerLeave;
+import mindustry.game.Team;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class TeamSavePlugin extends Plugin {
+public class KeepTeamPlugin extends Plugin {
     // 用於保存玩家隊伍信息的地圖
-    private final Map<String, String> playerTeams = new HashMap<>();
+    private final Map<String, Byte> playerTeams = new HashMap<>();
 
     @Override
     public void init() {
@@ -20,9 +21,9 @@ public class TeamSavePlugin extends Plugin {
             String uuid = player.uuid();
             if (playerTeams.containsKey(uuid)) {
                 // 恢復玩家隊伍
-                String team = playerTeams.get(uuid);
-                player.team(Team.valueOf(team));
-                Log.info("恢復玩家 @ 的隊伍為 @", player.name, team);
+                byte teamId = playerTeams.get(uuid);
+                player.team(Team.get(teamId));
+                Log.info("恢復玩家 @ 的隊伍為 @", player.name, teamId);
             }
         });
 
@@ -31,8 +32,8 @@ public class TeamSavePlugin extends Plugin {
             Player player = event.player;
             String uuid = player.uuid();
             // 保存玩家隊伍信息
-            playerTeams.put(uuid, player.team().name());
-            Log.info("保存玩家 @ 的隊伍為 @", player.name, player.team().name());
+            playerTeams.put(uuid, player.team().id);
+            Log.info("保存玩家 @ 的隊伍為 @", player.name, player.team().id);
         });
     }
 }
