@@ -1,6 +1,6 @@
 {
   "name": "ExamplePlugin",
-  "version": "1.0",
+  "version": "KeepTeamPlugin",
   "main": "example.KeepTeamPlugin",
   "dependencies": []
 }
