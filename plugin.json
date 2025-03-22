@@ -1,6 +1,6 @@
 {
   "name": "KeepTeamPlugin",
   "version": "1.0",
-  "main": "KeepTeamPlugin",
+  "main": "src/example/KeepTeamPlugin.java",
   "dependencies": []
 }
